@@ -1,0 +1,7 @@
+name: UHC
+main: net.pinger.scenarios.Scenarios
+version: 1.0
+
+commands:
+ scenarios:
+  usage: /<command>

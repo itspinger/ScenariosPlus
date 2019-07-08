@@ -1,0 +1,11 @@
+net\pinger\scenarios\commands\ScenarioCommand.class
+net\pinger\scenarios\types\Bowless.class
+net\pinger\scenarios\types\Goldless.class
+net\pinger\scenarios\Scenario.class
+net\pinger\scenarios\types\BloodDiamonds.class
+net\pinger\scenarios\events\ClickEvent.class
+net\pinger\scenarios\Scenarios.class
+net\pinger\scenarios\ScenarioManager.class
+net\pinger\scenarios\types\Timber.class
+net\pinger\scenarios\utils\ItemBuilder.class
+net\pinger\scenarios\types\CutClean.class
