@@ -16,10 +16,10 @@ public class ClickEvent implements Listener {
 
     @EventHandler
     public void onClick(org.bukkit.event.inventory.InventoryClickEvent e) {
-        if (e.getClickedInventory().getName().equalsIgnoreCase(ChatColor.GOLD + ChatColor.BOLD.toString() + "GAME EDITOR - SCENARIOS")) {
+        if (e.getClickedInventory().getName().equalsIgnoreCase(ChatColor.AQUA + "Scenarios")) {
             e.setCancelled(true);
             for (Scenario scenario : scenarios.getScenarioManager().getScenarios()) {
-                if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(scenario.getName())) {
+                if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.GOLD + ChatColor.BOLD.toString() + scenario.getName())) {
                     if (!scenario.isEnabled()) {
                         scenario.enable();
                     } else {

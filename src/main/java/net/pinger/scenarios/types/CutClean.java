@@ -2,6 +2,7 @@ package net.pinger.scenarios.types;
 
 import net.pinger.scenarios.Scenario;
 import net.pinger.scenarios.Scenarios;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.*;
@@ -10,6 +11,8 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class CutClean extends Scenario {
@@ -75,6 +78,18 @@ public class CutClean extends Scenario {
     @Override
     public Material getMaterial() {
         return Material.IRON_INGOT;
+    }
+
+    @Override
+    public List<String> getExplanation() {
+        List<String> explain = new ArrayList<>();
+        explain.add("");
+        explain.add(ChatColor.YELLOW + "Explanation: ");
+        explain.add(ChatColor.BLUE + " - Ores are 100% smelted");
+        explain.add(ChatColor.BLUE + " - Food is 100% cooked");
+        explain.add(ChatColor.BLUE + " - No furnace needed");
+        explain.add(ChatColor.BLUE + " - Flint/Apple rates are 100%");
+        return explain;
     }
 
 

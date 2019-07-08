@@ -11,6 +11,9 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Bowless extends Scenario {
 
     public Bowless(Scenarios scenarios) {
@@ -52,5 +55,15 @@ public class Bowless extends Scenario {
     @Override
     public Material getMaterial() {
         return Material.BOW;
+    }
+
+    @Override
+    public List<String> getExplanation() {
+        List<String> explain = new ArrayList<>();
+        explain.add("");
+        explain.add(ChatColor.YELLOW + "Explanation: ");
+        explain.add(ChatColor.BLUE + " - Bows are not allowed");
+        explain.add(ChatColor.BLUE + " - Bows cannot be dropped by a mob");
+        return explain;
     }
 }

@@ -13,7 +13,9 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 
 public class Goldless extends Scenario {
@@ -66,5 +68,16 @@ public class Goldless extends Scenario {
     @Override
     public Material getMaterial() {
         return Material.GOLD_INGOT;
+    }
+
+    @Override
+    public List<String> getExplanation() {
+        List<String> explain = new ArrayList<>();
+        explain.add("");
+        explain.add(ChatColor.YELLOW + "Explanation: ");
+        explain.add(ChatColor.BLUE + " - Gold Drops are disabled");
+        explain.add(ChatColor.BLUE + " - Blast Mining gold is disabled");
+        explain.add(ChatColor.BLUE + " - Everytime you kill a person you receieve 8 gold and a golden head");
+        return explain;
     }
 }

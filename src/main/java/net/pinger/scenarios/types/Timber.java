@@ -2,12 +2,16 @@ package net.pinger.scenarios.types;
 
 import net.pinger.scenarios.Scenario;
 import net.pinger.scenarios.Scenarios;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Timber extends Scenario {
 
@@ -55,5 +59,14 @@ public class Timber extends Scenario {
     @Override
     public Material getMaterial() {
         return Material.APPLE;
+    }
+
+    @Override
+    public List<String> getExplanation() {
+        List<String> explain = new ArrayList<>();
+        explain.add("");
+        explain.add(ChatColor.YELLOW + "Explanation: ");
+        explain.add(ChatColor.BLUE + " - Breaking a log will result in breaking the whole tree");
+        return explain;
     }
 }

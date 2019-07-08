@@ -3,6 +3,7 @@ package net.pinger.scenarios;
 import lombok.Getter;
 import net.pinger.scenarios.commands.ScenarioCommand;
 import net.pinger.scenarios.events.ClickEvent;
+import net.pinger.scenarios.events.ScenarioEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -23,21 +24,22 @@ public class Scenarios extends JavaPlugin {
     public void onEnable() {
         this.scenarioManager = new ScenarioManager(this);
         Bukkit.getPluginManager().registerEvents(new ClickEvent(this), this);
+        Bukkit.getPluginManager().registerEvents(new ScenarioEvent(), this);
         getCommand("scenarios").setExecutor(new ScenarioCommand(this));
     }
 
     public void openScenariosInventory(Player player) {
-
         Inventory inventory = Bukkit.createInventory(null, 9, ChatColor.AQUA + "Scenarios");
 
         for (Scenario scenario : this.scenarioManager.getScenarios()) {
             List<String> lore = new ArrayList<>();
             if (scenario.isEnabled()) {
-                lore.add(ChatColor.GREEN + " - Enabled");
+                lore.add(ChatColor.GREEN + "Enabled");
             } else {
-                lore.add(ChatColor.RED + " - Disabled");
+                lore.add(ChatColor.RED + "Disabled");
             }
 
+            lore.addAll(scenario.getExplanation());
             inventory.addItem(itemStack(scenario.getMaterial(), lore, scenario.getName()));
         }
 
@@ -47,7 +49,7 @@ public class Scenarios extends JavaPlugin {
     public ItemStack itemStack(Material material, List<String> lore, String name) {
         ItemStack itemStack = new ItemStack(material);
         ItemMeta itemMeta = itemStack.getItemMeta();
-        itemMeta.setDisplayName(name);
+        itemMeta.setDisplayName(ChatColor.GOLD + ChatColor.BOLD.toString() + name);
         itemMeta.setLore(lore);
         itemStack.setItemMeta(itemMeta);
         return itemStack;

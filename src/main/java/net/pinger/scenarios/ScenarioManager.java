@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class ScenarioManager {
 
     private final Scenarios scenario;
-    @Getter private Set<Scenario> scenarios = new HashSet<>();
+    @Getter private final Set<Scenario> scenarios = new HashSet<>();
 
     public ScenarioManager(Scenarios scenarios) {
         this.scenario = scenarios;
