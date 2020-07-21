@@ -12,13 +12,15 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
+import javax.management.InvalidAttributeValueException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Scenarios extends JavaPlugin {
 
-    @Getter private ScenarioManager scenarioManager;
+    private ScenarioManager scenarioManager;
 
     @Override
     public void onEnable() {
@@ -29,21 +31,41 @@ public class Scenarios extends JavaPlugin {
     }
 
     public void openScenariosInventory(Player player) {
-        Inventory inventory = Bukkit.createInventory(null, 9, ChatColor.AQUA + "Scenarios");
+        Inventory inventory = Bukkit.createInventory(null, 18, ChatColor.AQUA + "Scenarios");
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                inventory.clear();
 
-        for (Scenario scenario : this.scenarioManager.getScenarios()) {
-            List<String> lore = new ArrayList<>();
-            if (scenario.isEnabled()) {
-                lore.add(ChatColor.GREEN + "Enabled");
-            } else {
-                lore.add(ChatColor.RED + "Disabled");
+                if (!player.getOpenInventory().getTitle().equals(inventory.getTitle())) {
+                    cancel();
+                }
+
+                for (Scenario scenario : scenarioManager.getScenarios()) {
+                    List<String> lore = new ArrayList<>();
+                    if (scenario.isEnabled()) {
+                        lore.add(ChatColor.GREEN + "Enabled");
+                    } else {
+                        lore.add(ChatColor.RED + "Disabled");
+                    }
+
+                    lore.addAll(scenario.getExplanation());
+                    inventory.addItem(itemStack(scenario.getMaterial(), lore, scenario.getName()));
+                }
             }
-
-            lore.addAll(scenario.getExplanation());
-            inventory.addItem(itemStack(scenario.getMaterial(), lore, scenario.getName()));
-        }
+        }.runTaskTimer(this, 0, 1L);
 
         player.openInventory(inventory);
+    }
+
+    public void openEnabledScenarios(Player player) {
+    	Inventory inventory = Bukkit.createInventory(null, 9, ChatColor.AQUA + "Enabled Scenarios");
+
+    	for (Scenario scenario : this.scenarioManager.getEnabledScenarios()) {
+    		inventory.addItem(itemStack(scenario.getMaterial(), scenario.getExplanation(), scenario.getName()));
+	    }
+
+	    player.openInventory(inventory);
     }
 
     public ItemStack itemStack(Material material, List<String> lore, String name) {
@@ -55,4 +77,7 @@ public class Scenarios extends JavaPlugin {
         return itemStack;
     }
 
+    public ScenarioManager getScenarioManager() {
+        return scenarioManager;
+    }
 }

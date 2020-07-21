@@ -1,7 +1,6 @@
 package net.pinger.scenarios.commands;
 
 import net.pinger.scenarios.Scenarios;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -17,14 +16,17 @@ public class ScenarioCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        if (!commandSender.hasPermission("scenarios.use")) {
-            commandSender.sendMessage(ChatColor.RED + "Not enough permissions");
+
+	    if (!((commandSender) instanceof Player)) return true;
+
+	    Player sender = (Player) commandSender;
+
+        if (!sender.hasPermission("scenarios.use")) {
+            scenarios.openEnabledScenarios(sender);
             return true;
         }
 
-        if (!((commandSender) instanceof Player)) return true;
-
-        scenarios.openScenariosInventory((Player) commandSender);
+        scenarios.openScenariosInventory(sender);
         return true;
     }
 }

@@ -12,7 +12,6 @@ import java.util.List;
 
 public abstract class Scenario implements Listener {
 
-    @Getter @Setter
     private boolean enabled;
 
     protected final Scenarios scenarios;
@@ -31,14 +30,21 @@ public abstract class Scenario implements Listener {
 
     public void enable() {
         Bukkit.getPluginManager().registerEvents(this, this.scenarios);
-        setEnabled(true);
+        this.enabled = true;
         Bukkit.getPluginManager().callEvent(new ScenarioUpdateEvent(this));
     }
 
     public void disable() {
         HandlerList.unregisterAll(this);
-        setEnabled(false);
+        this.enabled = false;
 	    Bukkit.getPluginManager().callEvent(new ScenarioUpdateEvent(this));
     }
 
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
 }

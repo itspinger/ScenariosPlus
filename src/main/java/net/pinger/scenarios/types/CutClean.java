@@ -2,6 +2,7 @@ package net.pinger.scenarios.types;
 
 import net.pinger.scenarios.Scenario;
 import net.pinger.scenarios.Scenarios;
+import net.pinger.scenarios.utils.ItemBuilder;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -9,9 +10,10 @@ import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -65,6 +67,15 @@ public class CutClean extends Scenario {
         }
     }
 
+    @EventHandler
+    public void onPlayerDeath(PlayerDeathEvent e) {
+        // The golden Head
+        ItemStack itemStack = new ItemBuilder(Material.GOLDEN_APPLE).setName(ChatColor.GOLD + "Golden Head").setLore(ChatColor.DARK_PURPLE + "Some say consuming the head of a", ChatColor.DARK_PURPLE + "fallen foe strengthens the blood.").toItemStack();
+
+        e.getDrops().add(itemStack);
+    }
+
+
     @Override
     public String getName() {
         return "CutClean";
@@ -82,7 +93,7 @@ public class CutClean extends Scenario {
 
     @Override
     public List<String> getExplanation() {
-        List<String> explain = new ArrayList<>();
+        List<String> explain = new LinkedList<>();
         explain.add("");
         explain.add(ChatColor.YELLOW + "Explanation: ");
         explain.add(ChatColor.BLUE + " - Ores are 100% smelted");

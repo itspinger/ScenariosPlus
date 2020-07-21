@@ -9,7 +9,6 @@ public class ScenarioUpdateEvent extends Event {
 
 	private final static HandlerList handlersList = new HandlerList();
 
-	@Getter
 	private final Scenario scenario;
 
 	public ScenarioUpdateEvent(Scenario scenario) {
@@ -25,5 +24,7 @@ public class ScenarioUpdateEvent extends Event {
 		return handlersList;
 	}
 
-
+    public Scenario getScenario() {
+        return scenario;
+    }
 }

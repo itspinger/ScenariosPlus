@@ -10,7 +10,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Timber extends Scenario {
@@ -63,7 +63,7 @@ public class Timber extends Scenario {
 
     @Override
     public List<String> getExplanation() {
-        List<String> explain = new ArrayList<>();
+        List<String> explain = new LinkedList<>();
         explain.add("");
         explain.add(ChatColor.YELLOW + "Explanation: ");
         explain.add(ChatColor.BLUE + " - Breaking a log will result in breaking the whole tree");

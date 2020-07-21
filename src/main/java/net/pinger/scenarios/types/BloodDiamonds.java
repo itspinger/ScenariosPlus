@@ -9,6 +9,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockBreakEvent;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class BloodDiamonds extends Scenario {
@@ -42,7 +43,7 @@ public class BloodDiamonds extends Scenario {
 
     @Override
     public List<String> getExplanation() {
-        List<String> explain = new ArrayList<>();
+        List<String> explain = new LinkedList<>();
         explain.add("");
         explain.add(ChatColor.YELLOW + "Explanation: ");
         explain.add(ChatColor.BLUE + " - When you mine a diamond you take 0.5 damage");

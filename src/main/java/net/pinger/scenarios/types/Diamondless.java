@@ -15,18 +15,19 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.*;
 
-public class Goldless extends Scenario {
+public class Diamondless extends Scenario {
 
-    public Goldless(Scenarios scenarios) {
+
+    public Diamondless(Scenarios scenarios) {
         super(scenarios);
     }
 
     @EventHandler
-    public void onBlastMineGold(EntityExplodeEvent e) {
+    public void onBlastMineDiamond(EntityExplodeEvent e) {
         Iterator<Block> i = e.blockList().iterator();
         while (i.hasNext()) {
             Block block = i.next();
-            if (block.getType() == Material.GOLD_ORE) {
+            if (block.getType() == Material.DIAMOND_ORE) {
                 block.setType(Material.AIR);
                 i.remove();
             }
@@ -35,36 +36,34 @@ public class Goldless extends Scenario {
 
     @EventHandler
     public void onBlockBreakGold(BlockBreakEvent e) {
-        if (e.getBlock().getType() == Material.GOLD_ORE) {
+        if (e.getBlock().getType() == Material.DIAMOND_ORE) {
             e.setCancelled(true);
             e.getBlock().setType(Material.AIR);
             e.getBlock().getState().update();
-            e.getBlock().getWorld().spawn(e.getBlock().getLocation(), ExperienceOrb.class).setExperience(new Random().nextInt(4) + 3);
+            e.getBlock().getWorld().spawn(e.getBlock().getLocation(), ExperienceOrb.class).setExperience(new Random().nextInt(7) + 3);
         }
     }
 
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent e) {
         // The golden Head
-        ItemStack itemStack = new ItemBuilder(Material.GOLDEN_APPLE).setName(ChatColor.GOLD + "Golden Head").setLore(ChatColor.DARK_PURPLE + "Some say consuming the head of a", ChatColor.DARK_PURPLE + "fallen foe strengthens the blood.").toItemStack();
-
-        e.getDrops().add(itemStack);
-        e.getDrops().add(new ItemStack(Material.GOLD_INGOT, 8));
+        e.getDrops().add(new ItemStack(Material.DIAMOND));
     }
+
 
     @Override
     public String getName() {
-        return "Goldless";
+        return "Diamondless";
     }
 
     @Override
     public int getId() {
-        return 2;
+        return 9;
     }
 
     @Override
     public Material getMaterial() {
-        return Material.GOLD_INGOT;
+        return Material.DIAMOND_AXE;
     }
 
     @Override
@@ -72,9 +71,9 @@ public class Goldless extends Scenario {
         List<String> explain = new LinkedList<>();
         explain.add("");
         explain.add(ChatColor.YELLOW + "Explanation: ");
-        explain.add(ChatColor.BLUE + " - Gold Drops are disabled");
-        explain.add(ChatColor.BLUE + " - Blast Mining gold is disabled");
-        explain.add(ChatColor.BLUE + " - Everytime you kill a person you receieve 8 gold and a golden head");
+        explain.add(ChatColor.BLUE + " - Diamond drops are disabled");
+        explain.add(ChatColor.BLUE + " - Blast Mining diamonds is disabled");
+        explain.add(ChatColor.BLUE + " - Everytime you kill a person you receieve 1 diamond from them.");
         return explain;
     }
 }

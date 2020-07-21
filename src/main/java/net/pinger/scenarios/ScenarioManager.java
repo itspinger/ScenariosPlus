@@ -6,23 +6,29 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class ScenarioManager {
 
     private final Scenarios scenario;
-    @Getter private final Set<Scenario> scenarios = new HashSet<>();
+    private final List<Scenario> scenarios = new LinkedList<>();
 
     public ScenarioManager(Scenarios scenarios) {
         this.scenario = scenarios;
 
         this.scenarios.add(new CutClean(this.scenario));
+        this.scenarios.add(new TimeBomb(this.scenario));
         this.scenarios.add(new Bowless(this.scenario));
         this.scenarios.add(new BloodDiamonds(this.scenario));
-        this.scenarios.add(new Goldless(this.scenario));
         this.scenarios.add(new Timber(this.scenario));
+        this.scenarios.add(new Fireless(this.scenario));
+        this.scenarios.add(new NoFall(this.scenario));
+	    this.scenarios.add(new NoClean(this.scenario));
+        this.scenarios.add(new Goldless(this.scenario));
+        this.scenarios.add(new Diamondless(this.scenario));
+        this.scenarios.add(new HasteyBoys(this.scenario));
     }
 
     public Scenario getScenarioByName(String name) {
@@ -67,4 +73,8 @@ public class ScenarioManager {
         scenario.setEnabled(true);
     }
 
+    public List<Scenario> getScenarios() {
+        return scenarios;
+    }
 }
+
