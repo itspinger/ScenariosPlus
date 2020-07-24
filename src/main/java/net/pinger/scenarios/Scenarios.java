@@ -1,9 +1,9 @@
 package net.pinger.scenarios;
 
-import lombok.Getter;
 import net.pinger.scenarios.commands.ScenarioCommand;
 import net.pinger.scenarios.events.ClickEvent;
 import net.pinger.scenarios.events.ScenarioEvent;
+import net.pinger.scenarios.utils.PlayerCache;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -14,17 +14,19 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import javax.management.InvalidAttributeValueException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Scenarios extends JavaPlugin {
 
     private ScenarioManager scenarioManager;
+    private PlayerCache playerCache;
 
     @Override
     public void onEnable() {
         this.scenarioManager = new ScenarioManager(this);
+        this.playerCache = new PlayerCache(this);
+
         Bukkit.getPluginManager().registerEvents(new ClickEvent(this), this);
         Bukkit.getPluginManager().registerEvents(new ScenarioEvent(), this);
         getCommand("scenarios").setExecutor(new ScenarioCommand(this));
@@ -79,5 +81,9 @@ public class Scenarios extends JavaPlugin {
 
     public ScenarioManager getScenarioManager() {
         return scenarioManager;
+    }
+
+    public PlayerCache getPlayerCache() {
+        return playerCache;
     }
 }

@@ -7,6 +7,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.ExperienceOrb;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
@@ -36,7 +37,11 @@ public class Diamondless extends Scenario {
 
     @EventHandler
     public void onBlockBreakGold(BlockBreakEvent e) {
+        Player p = e.getPlayer();
+
         if (e.getBlock().getType() == Material.DIAMOND_ORE) {
+            if (scenarios.getPlayerCache().hasPassedLimit(p.getUniqueId(), e.getBlock().getType())) return;
+
             e.setCancelled(true);
             e.getBlock().setType(Material.AIR);
             e.getBlock().getState().update();

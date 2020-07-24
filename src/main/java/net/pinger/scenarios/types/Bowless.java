@@ -23,6 +23,8 @@ public class Bowless extends Scenario {
     @EventHandler
     public void onDeath(EntityDeathEvent e) {
         for (ItemStack stack : e.getDrops()) {
+            if (stack == null) continue;
+
             if (stack.getType() == Material.BOW) {
                 e.getDrops().remove(stack);
             }

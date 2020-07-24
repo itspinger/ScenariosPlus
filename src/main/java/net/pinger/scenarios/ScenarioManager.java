@@ -1,6 +1,5 @@
 package net.pinger.scenarios;
 
-import lombok.Getter;
 import net.pinger.scenarios.types.*;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -21,14 +20,23 @@ public class ScenarioManager {
         this.scenarios.add(new CutClean(this.scenario));
         this.scenarios.add(new TimeBomb(this.scenario));
         this.scenarios.add(new Bowless(this.scenario));
+        this.scenarios.add(new Limitations(this.scenario));
         this.scenarios.add(new BloodDiamonds(this.scenario));
         this.scenarios.add(new Timber(this.scenario));
+        this.scenarios.add(new Horseless(this.scenario));
         this.scenarios.add(new Fireless(this.scenario));
+        this.scenarios.add(new TripleOres(this.scenario));
         this.scenarios.add(new NoFall(this.scenario));
+        this.scenarios.add(new Soup(this.scenario));
 	    this.scenarios.add(new NoClean(this.scenario));
         this.scenarios.add(new Goldless(this.scenario));
+        this.scenarios.add(new DoubleOres(this.scenario));
         this.scenarios.add(new Diamondless(this.scenario));
         this.scenarios.add(new HasteyBoys(this.scenario));
+        this.scenarios.add(new Rodless(this.scenario));
+        this.scenarios.add(new BleedingSweets(this.scenario));
+
+
     }
 
     public Scenario getScenarioByName(String name) {

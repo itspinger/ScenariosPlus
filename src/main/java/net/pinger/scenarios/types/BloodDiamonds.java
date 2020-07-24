@@ -22,7 +22,7 @@ public class BloodDiamonds extends Scenario {
     public void onBlockBreak(BlockBreakEvent e) {
         Player player = e.getPlayer();
         if (e.getBlock().getType() == Material.DIAMOND_ORE) {
-            player.damage(0.5);
+            player.damage(1);
         }
     }
 

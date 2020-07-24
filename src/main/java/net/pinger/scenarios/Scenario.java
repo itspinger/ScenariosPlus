@@ -1,7 +1,5 @@
 package net.pinger.scenarios;
 
-import lombok.Getter;
-import lombok.Setter;
 import net.pinger.scenarios.events.custom.ScenarioUpdateEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

@@ -1,8 +1,10 @@
 package net.pinger.scenarios.types;
 
 import net.pinger.scenarios.Scenario;
+import net.pinger.scenarios.ScenarioManager;
 import net.pinger.scenarios.Scenarios;
 import net.pinger.scenarios.utils.ItemBuilder;
+import net.pinger.scenarios.utils.PlayerCache;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -22,12 +24,18 @@ public class CutClean extends Scenario {
     public CutClean(Scenarios scenarios) {
         super(scenarios);
     }
-
     @EventHandler
     public void onBlockBreak(BlockBreakEvent e) {
         Block block = e.getBlock();
+        Player p = e.getPlayer();
+
+        if (scenarios.getScenarioManager().getScenarioByName("Triple Ores").isEnabled() || scenarios.getScenarioManager().getScenarioByName("Double Ores").isEnabled()) {
+            return;
+        }
 
         if (block.getType() == Material.IRON_ORE) {
+            if (scenarios.getPlayerCache().hasPassedLimit(p.getUniqueId(), block.getType())) return;
+
             e.setCancelled(true);
             block.setType(Material.AIR);
             block.getState().update();
@@ -35,6 +43,8 @@ public class CutClean extends Scenario {
             block.getWorld().spawn(block.getLocation(), ExperienceOrb.class).setExperience(new Random().nextInt(4));
 
         } else if (block.getType() == Material.GOLD_ORE && !this.scenarios.getScenarioManager().getScenarioById(2).isEnabled()) {
+            if (scenarios.getPlayerCache().hasPassedLimit(p.getUniqueId(), block.getType())) return;
+
             e.setCancelled(true);
             block.setType(Material.AIR);
             block.getState().update();

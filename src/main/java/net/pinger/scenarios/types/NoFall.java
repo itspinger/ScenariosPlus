@@ -23,7 +23,6 @@ public class NoFall extends Scenario {
 		Entity entity = event.getEntity();
 
 		if (entity instanceof Player) {
-
 			if (event.getCause().equals(EntityDamageEvent.DamageCause.FALL)) {
 				event.setCancelled(true);
 			}
