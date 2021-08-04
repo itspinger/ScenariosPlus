@@ -1,0 +1,8 @@
+main: net.pinger.scenarios.ScenariosPlus
+name: ScenariosPlus
+version: 2.0
+
+commands:
+  scenarios:
+    aliases: [scen]
+    usage: /<command>

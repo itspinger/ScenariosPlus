@@ -43,4 +43,8 @@ public class ScenariosAPI {
     public static boolean isScenarioEnabled(int id) {
         return manager.isScenarioEnabled(id);
     }
+
+    public static boolean isScenarioEnabled(Scenario scenario) {
+        return manager.isScenarioEnabled(scenario);
+    }
 }

@@ -1,0 +1,4 @@
+net\pinger\scenarios\event\ScenarioUpdateEvent.class
+net\pinger\scenarios\api\ScenariosAPI.class
+net\pinger\scenarios\ScenarioManager.class
+net\pinger\scenarios\Scenario.class

@@ -8,7 +8,7 @@ public class ItemConsumeListener implements Listener {
 
     @EventHandler
     public void onConsume(PlayerItemConsumeEvent event) {
-
+        // Check for head consume
     }
 
 }

@@ -5,7 +5,7 @@ import org.bukkit.Material;
 
 import java.util.List;
 
-public class FirelessScenario extends Scenario {
+public class FirelessScenario implements Scenario {
     /**
      * Represents the name of this scenario.
      * This name must be unique, otherwise newly registered scenarios will not be added to the structure.

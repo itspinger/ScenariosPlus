@@ -15,7 +15,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-public class CCScenario extends Scenario {
+public class CCScenario implements Scenario {
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent e) {
@@ -27,15 +27,15 @@ public class CCScenario extends Scenario {
         }
 
         if (block.getType() == Material.IRON_ORE) {
-            if (scenarios.getPlayerCache().hasPassedLimit(p.getUniqueId(), block.getType())) return;
+//            if (scenarios.getPlayerCache().hasPassedLimit(p.getUniqueId(), block.getType())) return;
 
             e.setCancelled(true);
             block.setType(Material.AIR);
             block.getState().update();
             block.getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.IRON_INGOT));
             block.getWorld().spawn(block.getLocation(), ExperienceOrb.class).setExperience(new Random().nextInt(4));
-        } else if (block.getType() == Material.GOLD_ORE && ScenariosAPI.getManager().getScenarioById(2).isEnabled()) {
-            if (scenarios.getPlayerCache().hasPassedLimit(p.getUniqueId(), block.getType())) return;
+        } else if (block.getType() == Material.GOLD_ORE && ScenariosAPI.isScenarioEnabled(2)) {
+//            if (scenarios.getPlayerCache().hasPassedLimit(p.getUniqueId(), block.getType())) return;
 
             e.setCancelled(true);
             block.setType(Material.AIR);
@@ -69,8 +69,6 @@ public class CCScenario extends Scenario {
     @Override
     public List<String> getExplanation() {
         List<String> explain = new LinkedList<>();
-        explain.add("");
-        explain.add(ChatColor.YELLOW + "Explanation: ");
         explain.add(ChatColor.BLUE + " - Ores are 100% smelted");
         explain.add(ChatColor.BLUE + " - Food is 100% cooked");
         explain.add(ChatColor.BLUE + " - No furnace needed");

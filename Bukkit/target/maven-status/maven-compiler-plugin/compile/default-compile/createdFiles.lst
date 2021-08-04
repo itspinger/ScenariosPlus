@@ -1,0 +1,9 @@
+net\pinger\scenarios\listeners\ItemConsumeListener.class
+net\pinger\scenarios\implementations\FirelessScenario.class
+net\pinger\scenarios\inventory\provider\ScenariosInventoryProvider.class
+net\pinger\scenarios\ScenariosPlus.class
+net\pinger\scenarios\implementations\CCScenario.class
+net\pinger\scenarios\commands\ScenariosCommand.class
+net\pinger\scenarios\manager\SimpleScenarioManager.class
+net\pinger\scenarios\implementations\GoldlessScenario.class
+net\pinger\scenarios\inventory\InventoryManager.class

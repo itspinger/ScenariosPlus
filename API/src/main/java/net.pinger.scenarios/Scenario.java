@@ -5,9 +5,7 @@ import org.bukkit.event.Listener;
 
 import java.util.List;
 
-public abstract class Scenario implements Listener {
-
-    private boolean enabled = false;
+public interface Scenario extends Listener {
 
     /**
      * Represents the name of this scenario.
@@ -16,7 +14,7 @@ public abstract class Scenario implements Listener {
      * @return the name
      */
 
-    public abstract String getName();
+    String getName();
 
     /**
      * Represents the material used in the inventory to display this scenario.
@@ -25,7 +23,7 @@ public abstract class Scenario implements Listener {
      * @return the material
      */
 
-    public abstract Material getMaterial();
+    Material getMaterial();
 
     /**
      * This method represents the id of the scenario.
@@ -36,7 +34,7 @@ public abstract class Scenario implements Listener {
      * @return the id
      */
 
-    public abstract int getId();
+    int getId();
 
     /**
      * Represents the explanation of this scenario, used in the inventory gui.
@@ -45,19 +43,5 @@ public abstract class Scenario implements Listener {
      * @return the explanation
      */
 
-    public abstract List<String> getExplanation();
-
-    /**
-     * Returns whether this scenario is currently enabled
-     *
-     * @return
-     */
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
+    List<String> getExplanation();
 }

@@ -1,6 +1,6 @@
 package net.pinger.scenarios.implementations;
 
-import net.pinger.item.ItemBuilder;
+import net.pinger.bukkit.item.ItemBuilder;
 import net.pinger.scenarios.Scenario;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -18,13 +18,15 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-public class GoldlessScenario extends Scenario {
+public class GoldlessScenario implements Scenario {
 
     @EventHandler
     public void onBlastMineGold(EntityExplodeEvent e) {
         Iterator<Block> i = e.blockList().iterator();
         while (i.hasNext()) {
             Block block = i.next();
+
+            // Remove if its the gold ore
             if (block.getType() == Material.GOLD_ORE) {
                 block.setType(Material.AIR);
                 i.remove();
@@ -37,7 +39,7 @@ public class GoldlessScenario extends Scenario {
         Player p = e.getPlayer();
 
         if (e.getBlock().getType() == Material.GOLD_ORE) {
-            if (scenarios.getPlayerCache().hasPassedLimit(p.getUniqueId(), e.getBlock().getType())) return;
+//            if (scenarios.getPlayerCache().hasPassedLimit(p.getUniqueId(), e.getBlock().getType())) return;
 
             e.setCancelled(true);
             e.getBlock().setType(Material.AIR);
@@ -78,11 +80,9 @@ public class GoldlessScenario extends Scenario {
     @Override
     public List<String> getExplanation() {
         List<String> explain = new LinkedList<>();
-        explain.add("");
-        explain.add(ChatColor.YELLOW + "Explanation: ");
         explain.add(ChatColor.BLUE + " - Gold Drops are disabled");
         explain.add(ChatColor.BLUE + " - Blast Mining gold is disabled");
-        explain.add(ChatColor.BLUE + " - Everytime you kill a person you receieve 8 gold and a golden head");
+        explain.add(ChatColor.BLUE + " - Every time you kill a person you receive 8 gold and a golden head");
         return explain;
     }
 }

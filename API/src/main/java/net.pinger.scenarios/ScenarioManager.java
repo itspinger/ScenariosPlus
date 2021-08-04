@@ -6,6 +6,17 @@ import java.util.Set;
 public interface ScenarioManager {
 
     /**
+     * Register an array of scenarios to the data holder.
+     * <p>
+     * This method is not responsible for enabling and / or disabling scenarios,
+     * but only for registering custom scenarios
+     *
+     * @param scenarios the scenarios that are supposed to be registered
+     */
+
+    void registerScenario(Scenario... scenarios);
+
+    /**
      * Registers a certain scenario to the corresponding data holder.
      * <p>
      * This method is not responsible for enabling and / or disabling scenarios,
@@ -42,6 +53,38 @@ public interface ScenarioManager {
     Set<? extends Scenario> getScenarios();
 
     /**
+     * Returns all scenarios that are currently enabled.
+     *
+     * @return the scenarios that are enabled
+     */
+
+    Set<? extends Scenario> getEnabledScenarios();
+
+    /**
+     * Returns all scenarios that are currently disabled.
+     *
+     * @return the scenarios that are currently disabled
+     */
+
+    Set<? extends Scenario> getDisabledScenarios();
+
+    /**
+     * This method enables a certain scenario.
+     *
+     * @param scenario the scenario that is supposed to be enabled
+     */
+
+    void enableScenario(Scenario scenario);
+
+    /**
+     * This method disables a certain scenario.
+     *
+     * @param scenario the scenario that is supposed to be disabled
+     */
+
+    void disableScenario(Scenario scenario);
+
+    /**
      * This method checks if a scenario with a specific id is enabled.
      * If the id is non-existent, false will be returned.
      *
@@ -60,6 +103,15 @@ public interface ScenarioManager {
      */
 
     boolean isScenarioEnabled(String name);
+
+    /**
+     * This method checks if a certain scenario is enabled.
+     *
+     * @param scenario the scenario
+     * @return if the scenario is enabled
+     */
+
+    boolean isScenarioEnabled(Scenario scenario);
 
     /**
      * Returns a scenario based on the specified name.
@@ -100,11 +152,5 @@ public interface ScenarioManager {
      */
 
     List<Scenario> matchScenarios(String name);
-
-
-    default void enable(Scenario scenario) {
-        scenario.setEnabled(true);
-
-    }
 
 }
